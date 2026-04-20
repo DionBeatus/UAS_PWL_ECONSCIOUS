@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Supplier;
 
 class ProductController extends Controller
 {
@@ -14,18 +13,15 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
-
     public function create()
     {
-        $suppliers = Supplier::all();
-        return view('products.create', compact('suppliers'));
+        return view('products.create');
     }
-
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'product_name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'stock' => ['required', 'integer'],
         ]);
 
@@ -37,14 +33,13 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $suppliers = Supplier::all();
         return view('products.edit', compact('product'));
     }
 
     public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
-            'product_name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'stock' => ['required', 'integer'],
         ]);
 

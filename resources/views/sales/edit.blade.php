@@ -32,19 +32,26 @@
 
                     <div class="mb-4">
                         <label class="block font-medium mb-1">Nama Produk</label>
-                        <select name="product_name" class="w-full border rounded px-3 py-2">
-                            <option value="EcoChain" @selected(old('product_name', $sale->product_name) == 'EcoChain')>EcoChain</option>
+                        <select name="product_id" class="w-full border rounded px-3 py-2">
+                            <option value="">Pilih Produk</option>
+                            @foreach ($products as $product)
+                            <option value="{{ $product->id }}" @selected(old('product_id', $sale->product_id) == $product->id)>
+                                {{ $product->name }}
+                            </option>
+                            @endforeach
                         </select>
-                        @error('product_name')
+                        @error('product_id')
                         <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="mb-4">
                         <label class="block font-medium mb-1">Quantity</label>
-                        <input type="number" name="quantity" value="{{ old('quantity', $sale->quantity) }}"
-                            class="w-full border rounded px-3 py-2">
-                        @error('quantity')
+                        <input type="text" name="price" inputmode="numeric"
+                            value="{{ old('price', $sale->price ?? '') }}"
+                            class="w-full border border-gray-300 rounded px-3 py-2"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        @error('price')
                         <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                         @enderror
                     </div>
@@ -60,7 +67,7 @@
 
                     <div class="mb-4">
                         <label class="block font-medium mb-1">Total</label>
-                        <input type="number" id="total"
+                        <input type="number" name="total" id="total"
                             class="w-full border rounded px-3 py-2 bg-gray-100"
                             readonly>
                     </div>
@@ -85,8 +92,12 @@
         const total = document.getElementById('total');
 
         function hitungTotal() {
-            let q = parseInt(qty.value) || 0;
-            let p = parseInt(price.value) || 0;
+            let q = Number(qty.value);
+            let p = Number(price.value);
+
+            if (isNaN(q)) q = 0;
+            if (isNaN(p)) p = 0;
+
             total.value = q * p;
         }
 

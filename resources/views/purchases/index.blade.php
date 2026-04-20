@@ -17,7 +17,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-bold">Daftar Pembelian</h3>
-                    <a href="{{ route('suppliers.create') }}"
+                    <a href="{{ route('purchases.create') }}"
                         class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                         Tambah Pembelian
                     </a>
@@ -28,6 +28,8 @@
                         <thead class="bg-gray-100">
                             <tr>
                                 <th class="border px-4 py-2 text-left">No</th>
+                                <th class="border px-4 py-2 text-left">Tanggal Pembelian</th>
+                                <th class="border px-4 py-2 text-left">Nama Store</th>
                                 <th class="border px-4 py-2 text-left">Nama Pembeli</th>
                                 <th class="border px-4 py-2 text-left">Nama Produk</th>
                                 <th class="border px-4 py-2 text-left">Jumlah</th>
@@ -37,23 +39,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($suppliers as $key => $supplier)
+                            @forelse ($purchases as $key => $purchase)
                             <tr>
-                                <td class="border px-4 py-2">{{ $suppliers->firstItem() + $key }}</td>
-                                <td class="border px-4 py-2">{{ $supplier->buyer_name }}</td>
-                                <td class="border px-4 py-2">{{ $supplier->product_name }}</td>
-                                <td class="border px-4 py-2">{{ $supplier->quantity }}</td>
-                                <td class="border px-4 py-2">{{ $supplier->price }}</td>
-                                <td class="border px-4 py-2">{{ $supplier->total }}</td>
+                                <td class="border px-4 py-2">{{ $purchases->firstItem() + $key }}</td>
+                                <td class="border px-4 py-2">{{ $purchase->purchase_date }}</td>
+                                <td class="border px-4 py-2">{{ $purchase->store_name }}</td>
+                                <td class="border px-4 py-2">{{ $purchase->user->name ?? '-'}}</td>
+                                <td class="border px-4 py-2">{{ $purchase->product->name ?? '-'}}</td>
+                                <td class="border px-4 py-2">{{ $purchase->quantity }}</td>
+                                <td class="border px-4 py-2">{{ $purchase->price }}</td>
+                                <td class="border px-4 py-2">{{ $purchase->total }}</td>
 
                                 <td class="border px-4 py-2">
 
-                                    <a href="{{ route('suppliers.edit', $supplier->id) }}"
+                                    <a href="{{ route('purchases.edit', $purchase->id) }}"
                                         class="px-3 py-1 bg-yellow-500 text-white rounded">
                                         Edit
                                     </a>
 
-                                    <form action="{{ route('suppliers.destroy', $supplier->id) }}"
+                                    <form action="{{ route('purchases.destroy', $purchase->id) }}"
                                         method="POST"
                                         class="inline-block"
                                         onsubmit="return confirm('Yakin hapus data pembelian ini?')">
@@ -68,7 +72,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="7" class="border px-4 py-2 text-center">
+                                <td colspan="9" class="border px-4 py-2 text-center">
                                     Belum ada data pembelian.
                                 </td>
                             </tr>
@@ -78,7 +82,7 @@
                 </div>
 
                 <div class="mt-4">
-                    {{ $suppliers->links() }}
+                    {{ $purchases->links() }}
                 </div>
             </div>
         </div>

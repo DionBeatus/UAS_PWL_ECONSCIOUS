@@ -4,8 +4,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PurchaseController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,11 +16,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('dashboard');
+
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('users', UserController::class)->except(['show']);
     Route::resource('sales', SaleController::class);
     Route::resource('products', ProductController::class);
-    Route::resource('suppliers', SupplierController::class);
+    Route::resource('purchases', PurchaseController::class);
 });
 
 Route::middleware('auth')->group(function () {

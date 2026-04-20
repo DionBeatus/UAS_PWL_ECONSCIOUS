@@ -31,10 +31,15 @@
 
                     <div class="mb-4">
                         <label class="block font-medium mb-1">Nama Produk</label>
-                        <select name="product_name" class="w-full border rounded px-3 py-2">
-                            <option value="EcoChain">EcoChain</option>
+                        <select name="product_id" class="w-full border rounded px-3 py-2">
+                            <option value="">Pilih Produk</option>
+                            @foreach ($products as $product)
+                            <option value="{{ $product->id }}">
+                                {{ $product->name }}
+                            </option>
+                            @endforeach
                         </select>
-                        @error('product_name')
+                        @error('product_id')
                         <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                         @enderror
                     </div>
@@ -85,14 +90,16 @@
         const total = document.getElementById('total');
 
         function hitungTotal() {
-            let q = parseInt(qty.value) || 0;
-            let p = parseInt(price.value) || 0;
-            let t = Math.round(q * p);
-            total.value = t;
+            let q = Number(qty.value);
+            let p = Number(price.value);
+
+            if (isNaN(q)) q = 0;
+            if (isNaN(p)) p = 0;
+
+            total.value = q * p;
         }
 
         qty.addEventListener('input', hitungTotal);
         price.addEventListener('input', hitungTotal);
     </script>
-
 </x-app-layout>

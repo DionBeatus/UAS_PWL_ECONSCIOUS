@@ -49,7 +49,7 @@
                                 <td class="border px-4 py-2">{{ $sales->firstItem() + $key }}</td>
                                 <td class="border px-4 py-2">{{ $sale->customer_name }}</td>
                                 <td class="border px-4 py-2">{{ $sale->customer_email }}</td>
-                                <td class="border px-4 py-2">{{ $sale->product_name }}</td>
+                                <td class="border px-4 py-2">{{ $sale->product->name }}</td>
                                 <td class="border px-4 py-2">{{ $sale->quantity }}</td>
                                 <td class="border px-4 py-2">{{ $sale->price }}</td>
                                 <td class="border px-4 py-2">{{ $sale->total }}</td>

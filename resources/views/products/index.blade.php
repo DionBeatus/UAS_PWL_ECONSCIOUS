@@ -37,7 +37,7 @@
                             @forelse ($products as $key => $product)
                             <tr>
                                 <td class="border px-4 py-2">{{ $products->firstItem() + $key }}</td>
-                                <td class="border px-4 py-2">{{ $product->product_name }}</td>
+                                <td class="border px-4 py-2">{{ $product->name }}</td>
                                 <td class="border px-4 py-2">{{ $product->stock }}</td>
 
                                 <td class="border px-4 py-2">
@@ -49,7 +49,7 @@
                                     <form action="{{ route('products.destroy', $product->id) }}"
                                         method="POST"
                                         class="inline-block"
-                                        onsubmit="return confirm('Yakin hapus produk ini?')">
+                                        onsubmit="return confirm('Yakin hapus stock ini?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
