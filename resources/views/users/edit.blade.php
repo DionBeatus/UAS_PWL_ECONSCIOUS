@@ -50,7 +50,7 @@
                         <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                         @enderror
                     </div>
-                    
+
                     <div class="mb-4">
                         <label class="block font-medium mb-1">Konfirmasi Password Baru</label>
                         <input type="password" name="password_confirmation"

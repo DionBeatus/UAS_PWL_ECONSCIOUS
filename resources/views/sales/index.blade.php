@@ -22,7 +22,7 @@
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <div class="flex justify-between items-center mb-4">
-                       <h3 class="text-lg text-green-700 font-bold">Daftar Penjualan</h3>
+                    <h3 class="text-lg text-green-700 font-bold">Daftar Penjualan</h3>
                     <a href="{{ route('sales.create') }}"
                         class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
                         + Tambah Data Penjualan
