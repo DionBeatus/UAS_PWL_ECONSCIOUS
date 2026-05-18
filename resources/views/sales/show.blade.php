@@ -14,7 +14,7 @@
             <div class="bg-blue-100 shadow-sm sm:rounded-lg p-6 bg-gradient-to-b from-white to-[#CDFFC7]">
 
                 <div class="mb-6 bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-green-100 shadow-sm">
-                    <h3 class="text-sm font-bold text-green-800 uppercase tracking-wider mb-3">Informasi Pelanggan</h3>
+                    <h3 class="text-sm font-bold text-green-800 uppercase tracking-wider mb-3">Informasi Transaksi Penjualan</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         <div>
                             <span class="block text-gray-500 font-medium">Nama Customer:</span>

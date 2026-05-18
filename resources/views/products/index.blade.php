@@ -14,7 +14,7 @@
                     <h3 class="text-lg text-green-700 font-bold">Daftar Produk</h3>
 
                     <a href="{{ route('products.create') }}"
-                        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                        class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700">
                         + Tambah Produk
                     </a>
                 </div>
@@ -63,7 +63,7 @@
                                 <td class="border px-4 py-2 flex justify-center gap-2">
 
                                     <a href="{{ route('products.edit', $product->id) }}"
-                                        class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                        class="px-3 font-semibold py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
                                         Edit
                                     </a>
 
@@ -74,7 +74,7 @@
                                         @method('DELETE')
 
                                         <button type="submit"
-                                            class="px-3 py-1 bg-orange-600 text-white rounded hover:bg-red-700">
+                                            class="px-3 font-semibold py-1 bg-orange-600 text-white rounded hover:bg-red-700">
                                             Hapus
                                         </button>
                                     </form>

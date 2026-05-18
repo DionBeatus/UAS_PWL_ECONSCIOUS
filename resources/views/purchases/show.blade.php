@@ -14,16 +14,15 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-blue-100 shadow-sm sm:rounded-lg p-6 bg-gradient-to-b from-white to-[#CDFFC7]">
 
-                <!-- Informasi Nota & Toko (Sesuai Migration Purchases) -->
                 <div class="mb-6 bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-green-100 shadow-sm">
-                    <h3 class="text-sm font-bold text-green-800 uppercase tracking-wider mb-3">Informasi Nota Pembelian</h3>
+                    <h3 class="text-sm font-bold text-green-800 uppercase tracking-wider mb-3">Informasi Transaksi Pembelian</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         <div>
-                            <span class="block text-gray-500 font-medium">Nama Toko / Supplier:</span>
+                            <span class="block text-gray-500 font-medium">Nama Toko:</span>
                             <span class="text-base font-semibold text-gray-800">{{ $purchase->store_name }}</span>
                         </div>
                         <div>
-                            <span class="block text-gray-500 font-medium">No. Transaksi (ID):</span>
+                            <span class="block text-gray-500 font-medium">ID. Transaksi:</span>
                             <span class="text-base font-semibold text-gray-800">{{ $purchase->id }}</span>
                         </div>
                         <div class="mt-1">
@@ -33,7 +32,7 @@
                             </span>
                         </div>
                         <div class="mt-1">
-                            <span class="block text-gray-500 font-medium">Operator / Pembeli:</span>
+                            <span class="block text-gray-500 font-medium">PIC:</span>
                             <span class="text-base font-semibold text-gray-800">{{ $purchase->user->name ?? 'Admin' }}</span>
                         </div>
                     </div>
@@ -79,7 +78,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td colspan="3" class="px-4 py-2 text-right text-gray-500 font-medium">Ongkos Kirim (+):</td>
+                                    <td colspan="3" class="px-4 py-2 text-right text-gray-500 font-medium">Ongkos Kirim:</td>
                                     <td class="px-4 py-2 text-right text-gray-800 font-semibold">
                                         Rp {{ number_format($purchase->shipping_cost, 0, ',', '.') }}
                                     </td>

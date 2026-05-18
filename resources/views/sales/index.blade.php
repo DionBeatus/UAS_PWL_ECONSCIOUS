@@ -14,7 +14,7 @@
                     <h3 class="text-lg text-green-700 font-bold">Daftar Transaksi Penjualan</h3>
 
                     <a href="{{ route('sales.create') }}"
-                        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                        class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700">
                         + Tambah Transaksi Penjualan
                     </a>
                 </div>
@@ -52,7 +52,7 @@
 
                                 <td class="border px-4 py-2 flex justify-center gap-2">
                                     <a href="{{ route('sales.show', $sale->id) }}"
-                                        class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                        class="px-3 font-semibold py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
                                         Detail
                                     </a>
 
@@ -62,7 +62,7 @@
                                         @csrf
                                         @method('DELETE')
 
-                                        <button class="px-3 py-1 bg-orange-600 text-white rounded hover:bg-red-700">
+                                        <button class="px-3 py-1 font-semibold bg-orange-600 text-white rounded hover:bg-red-700">
                                             Hapus
                                         </button>
                                     </form>

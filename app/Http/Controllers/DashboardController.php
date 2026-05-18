@@ -6,9 +6,11 @@ use App\Models\Product;
 use App\Models\Sale;
 use App\Models\Purchase;
 use App\Models\Stock;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    
     public function index()
     {
         $totalExpenses = Purchase::sum('total');
@@ -16,12 +18,12 @@ class DashboardController extends Controller
         $totalSales = Sale::count();
         $totalRevenue = Sale::sum('total');
 
-        $recentPurchases = Purchase::latest()->take(5)->get();
-        $recentSales = Sale::latest()->take(5)->get();
+        $recentPurchases = Purchase::with('details.product')->latest()->take(5)->get();
+        $recentSales = Sale::with('details.product')->latest()->take(5)->get();
 
         $purchasesChart = Purchase::select(
-            \DB::raw('DATE(purchase_date) as date'),
-            \DB::raw('SUM(total) as total')
+            DB::raw('DATE(purchase_date) as date'),
+            DB::raw('SUM(total) as total')
         )
             ->groupBy('date')
             ->orderBy('date', 'ASC')

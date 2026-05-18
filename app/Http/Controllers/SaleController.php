@@ -168,8 +168,8 @@ class SaleController extends Controller
     private function updateEcochainMaterials(string $productName, int $qty, string $type = 'decrease'): void
     {
         $recipes = [
-            'EcoChain V1' => ['Paracord', 'Lonceng', 'Carabiner O', 'EcoCharm'],
-            'EcoChain V2' => ['Paracord', 'Lonceng', 'Carabiner Love', 'EcoCharm'],
+            'EcoChain V1' => ['Paracord', 'Lonceng', 'Biji Lada','Carabiner O', 'EcoCharm'],
+            'EcoChain V2' => ['Paracord', 'Lonceng', 'Biji Lada', 'Carabiner Love', 'EcoCharm'],
         ];
 
         if (!isset($recipes[$productName])) {

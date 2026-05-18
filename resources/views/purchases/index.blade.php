@@ -13,7 +13,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg text-green-700 font-bold">Daftar Transaksi Pembelian</h3>
                     <a href="{{ route('purchases.create') }}"
-                        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                        class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700">
                         + Tambah Transaksi Pembelian
                     </a>
                 </div>
@@ -55,7 +55,7 @@
 
                                 <td class="border px-4 py-2 flex justify-center gap-2">
                                     <a href="{{ route('purchases.show', $purchase->id) }}"
-                                        class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                        class="px-3 font-semibold py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
                                         Detail
                                     </a>
 
@@ -65,7 +65,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="px-3 py-1 bg-orange-600 text-white rounded hover:bg-red-700">
+                                            class="px-3 font-semibold py-1 bg-orange-600 text-white rounded hover:bg-red-700">
                                             Hapus
                                         </button>
                                     </form>

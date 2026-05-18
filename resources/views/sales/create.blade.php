@@ -50,7 +50,7 @@
                                 <div class="flex-1 min-w-[200px]">
                                     <label class="block text-xs font-medium text-gray-500 mb-1">Pilih Produk</label>
                                     <select name="products[]" class="w-full border rounded px-3 py-2 bg-white product-select" required>
-                                        <option value="" data-price="0"></option>
+                                        <option value=""></option>
                                         @foreach($products as $product)
                                         <option value="{{ $product->id }}" data-price="{{ $product->selling_price }}">
                                             {{ $product->product_name }}

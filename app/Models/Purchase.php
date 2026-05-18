@@ -27,4 +27,12 @@ class Purchase extends Model
             PurchaseDetail::class
         );
     }
+
+    public function product()
+    {
+        return $this->belongsTo(
+            Product::class, 
+            'product_id'
+        );
+    }
 }

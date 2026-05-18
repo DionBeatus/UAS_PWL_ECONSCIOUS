@@ -13,7 +13,7 @@
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-lg text-green-700 font-bold">Daftar Stok Barang</h3>
                     <a href="{{ route('stocks.create') }}"
-                        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">
+                        class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700 transition">
                         + Tambah Data Stok Awal
                     </a>
                 </div>
@@ -45,10 +45,10 @@
                         </select>
                     </div>
                     <div class="flex items-end gap-2">
-                        <button type="submit" class="flex-1 px-4 py-1.5 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition font-medium">
+                        <button type="submit" class="flex-1 px-4 py-1.5 font-semibold bg-green-600 text-white text-sm rounded hover:bg-green-700 transition">
                             Cari & Filter
                         </button>
-                        <a href="{{ route('stocks.index') }}" class="px-4 py-1.5 bg-gray-400 text-white text-sm rounded hover:bg-gray-500 transition text-center">
+                        <a href="{{ route('stocks.index') }}" class="px-4 font-semibold py-1.5 bg-gray-400 text-white text-sm rounded hover:bg-gray-500 transition text-center">
                             Reset
                         </a>
                     </div>
@@ -87,14 +87,14 @@
                                 <td class="border px-4 py-2 text-center">
                                     <div class="flex justify-center gap-2">
                                         <a href="{{ route('stocks.edit', $stock->id) }}"
-                                            class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                            class="px-3 font-semibold py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
                                             Edit
                                         </a>
                                         <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST"
                                             onsubmit="return confirm('Hapus data master stok untuk produk ini?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="px-3 py-1 bg-orange-600 text-white rounded hover:bg-red-700">
+                                            <button type="submit" class="px-3 font-semibold py-1 bg-orange-600 text-white rounded hover:bg-red-700">
                                                 Hapus
                                             </button>
                                         </form>

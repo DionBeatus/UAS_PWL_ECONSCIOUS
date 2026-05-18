@@ -19,7 +19,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg text-green-700 font-bold">Daftar Pengguna</h3>
                     <a href="{{ route('users.create') }}"
-                        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                        class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700">
                         + Tambah Data Pengguna
                     </a>
                 </div>
@@ -44,7 +44,7 @@
                                 <td class="border px-4 py-2">{{ $user->role }}</td>
                                 <td class="border px-4 py-2 flex justify-center gap-2">
                                     <a href="{{ route('users.edit', $user->id) }}"
-                                        class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                        class="px-3 font-semibold py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
                                         Edit
                                     </a>
 
@@ -55,7 +55,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="px-3 py-1 bg-orange-600 text-white rounded hover:bg-red-700">
+                                            class="px-3 font-semibold py-1 bg-orange-600 text-white rounded hover:bg-red-700">
                                             Hapus
                                         </button>
                                     </form>
