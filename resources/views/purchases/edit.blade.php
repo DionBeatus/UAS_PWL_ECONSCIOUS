@@ -47,7 +47,7 @@
                     <div class="mb-6">
                         <label class="block font-medium mb-2 text-gray-700">Produk yang Dibeli</label>
                         <div id="product-container" class="space-y-3">
-                            {{-- Looping baris produk berdasarkan data detail purchase yang mau diedit --}}
+
                             @foreach($purchase->details as $index => $detail)
                             <div class="flex flex-wrap md:flex-nowrap gap-2 items-center bg-white p-3 rounded-lg border border-green-100 product-row">
                                 <div class="flex-1 min-w-[200px]">
@@ -55,7 +55,7 @@
                                     <select name="products[]" class="w-full border rounded px-3 py-2 bg-white product-select" required>
                                         <option value=""></option>
                                         @foreach($products as $product)
-                                        <option value="{{ $product->id }}" 
+                                        <option value="{{ $product->id }}"
                                             {{ (old('products.'.$index, $detail->product_id) == $product->id) ? 'selected' : '' }}>
                                             {{ $product->product_name }}
                                         </option>
@@ -65,14 +65,14 @@
 
                                 <div class="w-24">
                                     <label class="block text-xs font-medium text-gray-500 mb-1 text-center">Quantity</label>
-                                    <input type="number" name="quantities[]" min="1" 
+                                    <input type="number" name="quantities[]" min="1"
                                         value="{{ old('quantities.'.$index, $detail->quantity) }}"
                                         class="w-full border rounded px-3 py-2 bg-white text-center quantity-input font-medium" required>
                                 </div>
 
                                 <div class="w-40">
                                     <label class="block text-xs font-medium text-gray-500 mb-1 text-center">Harga Beli</label>
-                                    <input type="text" 
+                                    <input type="text"
                                         value="Rp {{ number_format(old('prices.'.$index, $detail->price), 0, ',', '.') }}"
                                         class="w-full border rounded px-3 py-2 bg-white text-center price-input font-bold" required>
                                     <input type="hidden" name="prices[]" value="{{ old('prices.'.$index, $detail->price) }}" class="clean-price">
@@ -94,9 +94,9 @@
 
                     <div class="mb-4">
                         <label class="block font-medium mb-1 text-gray-700">Ongkos Kirim</label>
-                        <input type="text" 
+                        <input type="text"
                             value="Rp {{ number_format(old('shipping_cost', $purchase->shipping_cost), 0, ',', '.') }}"
-                            class="w-full border rounded px-3 py-2 bg-white text-gray-800 font-semibold "id="shipping_display">
+                            class="w-full border rounded px-3 py-2 bg-white text-gray-800 font-semibold " id="shipping_display">
                         <input type="hidden" id="shipping_cost" name="shipping_cost" value="{{ old('shipping_cost', $purchase->shipping_cost) }}">
                         @error('shipping_cost')
                         <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
@@ -105,7 +105,7 @@
 
                     <div class="mb-4">
                         <label class="block font-bold mb-1 text-gray-600">Total</label>
-                        <input type="text" id="grand_total_display" 
+                        <input type="text" id="grand_total_display"
                             value="Rp {{ number_format(old('total', $purchase->total), 0, ',', '.') }}"
                             class="w-full border rounded px-3 py-2 bg-gray-100 text-gray-800 font-bold text-lg focus:outline-none" readonly>
                         <input type="hidden" id="grand_total_value" name="total" value="{{ old('total', $purchase->total) }}">
@@ -142,7 +142,7 @@
 
                 let rawPrice = priceInput.value;
                 let cleanPriceValue = dapatkanAngkaBersih(rawPrice);
-                
+
                 hiddenPrice.value = cleanPriceValue;
                 priceInput.value = formatRupiah(cleanPriceValue);
 
@@ -155,7 +155,7 @@
             let shippingDisplay = document.getElementById('shipping_display');
             let shippingHidden = document.getElementById('shipping_cost');
             let cleanShipping = dapatkanAngkaBersih(shippingDisplay.value);
-            
+
             shippingHidden.value = cleanShipping;
             shippingDisplay.value = formatRupiah(cleanShipping);
 
