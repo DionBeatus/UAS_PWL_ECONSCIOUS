@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="mt-1">
                                     <span class="block text-gray-500 font-medium">PIC:</span>
-                                    <span class="text-base font-semibold text-gray-800">{{ Auth::user()->name ?? 'Admin' }}</span>
+                                    <span class="text-base font-semibold text-gray-800">{{ $sale->user->name ?? 'Admin' }}</span>
                                 </div>
                                 <div>
                                     <span class="block text-gray-500 font-medium">ID. Transaksi:</span>
@@ -89,7 +89,7 @@
                             </div>
                         </div>
 
-                        <div class="flex gap-2 border-t pt-4">
+                        <div class="flex gap-2">
                             <a href="{{ route('sales.edit', $sale->id) }}"
                                 class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition font-medium">
                                 Edit Transaksi

@@ -29,7 +29,7 @@
                                 <th class="border px-4 py-2 text-left">Nama Customer</th>
                                 <th class="border px-4 py-2 text-left">Email</th>
                                 <th class="border px-4 py-2 text-left">Total</th>
-                                <th class="border px-4 py-2 text-left">Aksi</th>
+                                <th class="border px-4 py-2 text-center">Aksi</th>
                             </tr>
                         </thead>
 

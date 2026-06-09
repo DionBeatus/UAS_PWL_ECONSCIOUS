@@ -51,7 +51,6 @@ class PurchaseController extends Controller
 
             PurchaseDetail::create([
                 'purchase_id' => $purchase->id,
-                'user_id' => Auth::id(),
                 'product_id' => $productId,
                 'quantity' => $qty,
                 'price' => $price,
@@ -131,7 +130,6 @@ class PurchaseController extends Controller
 
             PurchaseDetail::create([
                 'purchase_id' => $purchase->id,
-                'user_id' => Auth::id(),
                 'product_id' => $productId,
                 'quantity' => $qty,
                 'price' => $price,

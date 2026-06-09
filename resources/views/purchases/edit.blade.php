@@ -111,7 +111,7 @@
                         <input type="hidden" id="grand_total_value" name="total" value="{{ old('total', $purchase->total) }}">
                     </div>
 
-                    <div class="flex gap-2 border-t pt-4 border-green-200">
+                    <div class="flex gap-2">
                         <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition font-medium">
                             Simpan Transaksi
                         </button>

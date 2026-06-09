@@ -27,7 +27,7 @@
                                 <th class="border px-4 py-2 text-left">Nama Store</th>
                                 <th class="border px-4 py-2 text-left">PIC</th>
                                 <th class="border px-4 py-2 text-left">Total</th>
-                                <th class="border px-4 py-2 text-left">Aksi</th>
+                                <th class="border px-4 py-2 text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -102,7 +102,6 @@ class SaleController extends Controller
 
             SaleDetail::create([
                 'sale_id' => $sale->id,
-                'user_id' => Auth::id(),
                 'product_id' => $productId,
                 'quantity' => $qty,
                 'price' => $price,
@@ -239,7 +238,6 @@ class SaleController extends Controller
 
             SaleDetail::create([
                 'sale_id' => $sale->id,
-                'user_id' => Auth::id(),
                 'product_id' => $productId,
                 'quantity' => $qty,
                 'price' => $price,

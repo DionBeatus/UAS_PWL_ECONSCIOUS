@@ -95,7 +95,7 @@
                     </div>
                 </div>
 
-                <div class="flex gap-2 border-t pt-4">
+                <div class="flex gap-2">
                     <a href="{{ route('purchases.edit', $purchase->id) }}"
                         class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition font-medium">
                         Edit Transaksi

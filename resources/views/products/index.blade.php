@@ -30,7 +30,7 @@
                                 <th class="border px-4 py-2 text-left">Sumber</th>
                                 <th class="border px-4 py-2 text-left">Satuan</th>
                                 <th class="border px-4 py-2 text-left">Harga Jual</th>
-                                <th class="border px-4 py-2 text-left">Aksi</th>
+                                <th class="border px-4 py-2 text-center">Aksi</th>
                             </tr>
                         </thead>
 
