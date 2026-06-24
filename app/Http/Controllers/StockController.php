@@ -58,9 +58,7 @@ class StockController extends Controller
         $product = Product::findOrFail($request->product_id);
 
         if (strtolower(trim($product->category)) != 'complement') {
-            return back()->withErrors([
-                'product_id' => 'Produk selain complement tidak dapat dimasukkan ke stok.'
-            ])->withInput();
+            return back()->withErrors(['product_id' => 'Produk selain complement tidak dapat dimasukkan ke stok.'])->withInput();
         }
 
         Stock::create([
