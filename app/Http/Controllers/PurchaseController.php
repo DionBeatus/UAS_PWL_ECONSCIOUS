@@ -19,7 +19,7 @@ class PurchaseController extends Controller
 
     public function create()
     {
-        $products = Product::where('source_type', 'purchase')->orWhere('source_type', 'donation')->get();
+        $products = Product::where('source_type', 'purchase')->get();
         return view('purchases.create', compact('products'));
     }
 
@@ -87,7 +87,7 @@ class PurchaseController extends Controller
 
     public function edit(Purchase $purchase)
     {
-        $products = Product::where('source_type', 'purchase')->orWhere('source_type', 'donation')->get();
+        $products = Product::where('source_type', 'purchase')->get();
         $purchase->load('details');
 
         return view('purchases.edit', compact('purchase', 'products'));
@@ -119,7 +119,6 @@ class PurchaseController extends Controller
             'user_id' => Auth::id(),
             'purchase_date' => $request->purchase_date,
             'store_name' => $request->store_name,
-            'user_id' => Auth::id(),
             'shipping_cost' => $request->shipping_cost ?? 0,
             'total' => 0
         ]);

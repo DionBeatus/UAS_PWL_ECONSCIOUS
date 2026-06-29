@@ -13,12 +13,12 @@
 
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg text-green-700 font-bold">
-                        Daftar Resep Produk
+                        Daftar Data Donasi
                     </h3>
 
-                    <a href="{{ route('recipes.create') }}"
+                    <a href="{{ route('donations.create') }}"
                         class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700">
-                        + Tambah Resep
+                        + Tambah Data Donasi
                     </a>
                 </div>
 
@@ -28,52 +28,59 @@
                         <thead class="bg-green-50 text-green-700">
                             <tr>
                                 <th class="border px-4 py-2 text-left">No</th>
-                                <th class="border px-4 py-2 text-left">Nama Produk</th>
+                                <th class="border px-4 py-2 text-left">Tanggal Donasi</th>
+                                <th class="border px-4 py-2 text-left">Nama Donatur</th>
                                 <th class="border px-4 py-2 text-left">Perubahan Oleh</th>
-                                <th class="border px-4 py-2 text-left">Jumlah Bahan</th>
+                                <th class="border px-4 py-2 text-left">Jumlah Produk</th>
                                 <th class="border px-4 py-2 text-center">Aksi</th>
                             </tr>
                         </thead>
 
                         <tbody>
 
-                            @forelse ($recipes as $key => $recipe)
-
+                            @forelse($donations as $key => $donation)
                             <tr>
                                 <td class="border px-4 py-2">
-                                    {{ $recipes->firstItem() + $key }}
+                                    {{ $donations->firstItem() + $key }}
                                 </td>
 
                                 <td class="border px-4 py-2">
-                                    {{ $recipe->product->product_name }}
+                                    {{ $donation->donation_date }}
                                 </td>
 
                                 <td class="border px-4 py-2">
-                                    {{ $recipe->user->name ?? '-' }}
+                                    {{ $donation->donor_name }}
                                 </td>
 
                                 <td class="border px-4 py-2">
-                                    {{ $recipe->details->count() }}
+                                    {{ $donation->user->name ?? '-' }}
                                 </td>
 
-                                <td class="border px-4 py-2 text-center">
+                                <td class="border px-4 py-2">
+                                    {{ $donation->details->count() }}
+                                </td>
+
+                                <td class="border px-4 py-2">
                                     <div class="flex justify-center gap-2">
-                                        <a href="{{ route('recipes.show', $recipe->id) }}"
+
+                                        <a href="{{ route('donations.show', $donation->id) }}"
                                             class="px-3 py-1 font-semibold bg-blue-500 text-white rounded hover:bg-blue-600">
                                             Detail
                                         </a>
-                                        <form action="{{ route('recipes.destroy', $recipe->id) }}"
-                                            method="POST"
-                                            onsubmit="return confirm('Yakin hapus resep ini?')">
+
+                                        <form action="{{ route('donations.destroy', $donation->id) }}" method="POST"
+                                            onsubmit="return confirm('Yakin ingin menghapus data donasi ini?')">
 
                                             @csrf
                                             @method('DELETE')
 
                                             <button type="submit"
-                                                class="px-3 py-1 font-semibold bg-orange-600 text-white rounded hover:bg-red-700">
+                                                class="px-3 py-1 font-semibold bg-red-600 text-white rounded hover:bg-red-700">
                                                 Hapus
                                             </button>
+
                                         </form>
+
                                     </div>
                                 </td>
                             </tr>
@@ -81,9 +88,8 @@
                             @empty
 
                             <tr>
-                                <td colspan="5"
-                                    class="px-4 py-2 text-center text-gray-500">
-                                    Tidak ada data resep yang ditemukan.
+                                <td colspan="6" class="border px-4 py-2 text-center text-gray-500">
+                                    Belum ada data donasi.
                                 </td>
                             </tr>
 
@@ -95,10 +101,11 @@
                 </div>
 
                 <div class="mt-4">
-                    {{ $recipes->links() }}
+                    {{ $donations->links() }}
                 </div>
 
             </div>
+
         </div>
     </div>
 

@@ -2,20 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class RecipeDetail extends Model
+class DonationDetail extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'recipe_id',
+        'donation_id',
         'product_id',
         'quantity',
     ];
 
-    public function recipe()
+    public function donation()
     {
-        return $this->belongsTo(Recipe::class);
+        return $this->belongsTo(Donation::class);
     }
 
     public function product()

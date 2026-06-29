@@ -13,23 +13,26 @@
 
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg text-green-700 font-bold">
-                        Daftar Resep Produk
+                        Daftar Produksi
                     </h3>
 
-                    <a href="{{ route('recipes.create') }}"
+                    <a href="{{ route('productions.create') }}"
                         class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700">
-                        + Tambah Resep
+                        + Tambah Produksi
                     </a>
                 </div>
 
                 <div class="overflow-x-auto">
+
                     <table class="w-full border border-gray-300">
 
                         <thead class="bg-green-50 text-green-700">
                             <tr>
                                 <th class="border px-4 py-2 text-left">No</th>
-                                <th class="border px-4 py-2 text-left">Nama Produk</th>
+                                <th class="border px-4 py-2 text-left">Tanggal Produksi</th>
                                 <th class="border px-4 py-2 text-left">Perubahan Oleh</th>
+                                <th class="border px-4 py-2 text-left">Nama Produk</th>
+                                <th class="border px-4 py-2 text-left">Quantity</th>
                                 <th class="border px-4 py-2 text-left">Jumlah Bahan</th>
                                 <th class="border px-4 py-2 text-center">Aksi</th>
                             </tr>
@@ -37,53 +40,66 @@
 
                         <tbody>
 
-                            @forelse ($recipes as $key => $recipe)
+                            @forelse($productions as $key => $production)
 
                             <tr>
+
                                 <td class="border px-4 py-2">
-                                    {{ $recipes->firstItem() + $key }}
+                                    {{ $productions->firstItem() + $key }}
                                 </td>
 
                                 <td class="border px-4 py-2">
-                                    {{ $recipe->product->product_name }}
+                                    {{ $production->production_date }}
                                 </td>
 
                                 <td class="border px-4 py-2">
-                                    {{ $recipe->user->name ?? '-' }}
+                                    {{ $production->user->name }}
                                 </td>
 
                                 <td class="border px-4 py-2">
-                                    {{ $recipe->details->count() }}
+                                    {{ $production->product->product_name }}
                                 </td>
 
-                                <td class="border px-4 py-2 text-center">
+                                <td class="border px-4 py-2">
+                                    {{ $production->quantity }}
+                                </td>
+
+                                <td class="border px-4 py-2">
+                                    {{ $production->details->count() }}
+                                </td>
+
+                                <td class="border px-4 py-2">
                                     <div class="flex justify-center gap-2">
-                                        <a href="{{ route('recipes.show', $recipe->id) }}"
-                                            class="px-3 py-1 font-semibold bg-blue-500 text-white rounded hover:bg-blue-600">
+
+                                        <a href="{{ route('productions.show', $production->id) }}"
+                                            class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 font-semibold">
                                             Detail
                                         </a>
-                                        <form action="{{ route('recipes.destroy', $recipe->id) }}"
+
+                                        <form action="{{ route('productions.destroy', $production->id) }}"
                                             method="POST"
-                                            onsubmit="return confirm('Yakin hapus resep ini?')">
+                                            onsubmit="return confirm('Yakin ingin menghapus data produksi ini?')">
 
                                             @csrf
                                             @method('DELETE')
 
                                             <button type="submit"
-                                                class="px-3 py-1 font-semibold bg-orange-600 text-white rounded hover:bg-red-700">
+                                                class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 font-semibold">
                                                 Hapus
                                             </button>
+
                                         </form>
+
                                     </div>
                                 </td>
+
                             </tr>
 
                             @empty
 
                             <tr>
-                                <td colspan="5"
-                                    class="px-4 py-2 text-center text-gray-500">
-                                    Tidak ada data resep yang ditemukan.
+                                <td colspan="7" class="border px-4 py-2 text-center text-gray-500">
+                                    Belum ada data produksi.
                                 </td>
                             </tr>
 
@@ -92,13 +108,15 @@
                         </tbody>
 
                     </table>
+
                 </div>
 
                 <div class="mt-4">
-                    {{ $recipes->links() }}
+                    {{ $productions->links() }}
                 </div>
 
             </div>
+
         </div>
     </div>
 

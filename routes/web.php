@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\ProductionController;
+use App\Http\Controllers\DonationController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -25,6 +27,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('purchases', PurchaseController::class);
     Route::resource('stocks', StockController::class)->except(['create', 'store']);
     Route::resource('recipes', RecipeController::class);
+    Route::resource('productions', ProductionController::class);
+    Route::resource('donations', DonationController::class);
 });
 
 Route::middleware('auth')->group(function () {

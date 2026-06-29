@@ -18,14 +18,10 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <div>
                             <label class="block font-medium mb-1 text-gray-700">
-                                Produk Jadi
+                                Nama Produk
                             </label>
-                            <select name="product_id"
-                                class="w-full border rounded px-3 py-2 bg-white">
-                                @foreach($products as $product)
-                                <option value="{{ $product->id }}" {{ $recipe->product_id == $product->id ? 'selected' : '' }}> {{ $product->product_name }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" value="{{ $recipe->product->product_name }}" class="w-full border rounded px-3 py-2 bg-gray-100" readonly>
+                            <input type="hidden" name="product_id" value="{{ $recipe->product_id }}">
                         </div>
 
                         <div>

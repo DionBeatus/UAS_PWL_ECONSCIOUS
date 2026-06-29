@@ -3,19 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class RecipeDetail extends Model
+class ProductionDetail extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'recipe_id',
+        'production_id',
         'product_id',
         'quantity',
     ];
 
-    public function recipe()
+    public function production()
     {
-        return $this->belongsTo(Recipe::class);
+        return $this->belongsTo(Production::class);
     }
 
     public function product()

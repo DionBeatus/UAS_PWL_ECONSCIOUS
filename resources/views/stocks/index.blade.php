@@ -54,6 +54,7 @@
                                 <th class="border px-4 py-2 text-left">Perubahan Oleh</th>
                                 <th class="border px-4 py-2 text-left">Nama Produk</th>
                                 <th class="border px-4 py-2 text-left">Kategori</th>
+                                <th class="border px-4 py-2 text-left">Sumber</th>
                                 <th class="border px-4 py-2 text-center">Jumlah Stok</th>
                                 <th class="border px-4 py-2 text-center">Status</th>
                                 <th class="border px-4 py-2 text-center">Aksi</th>
@@ -66,6 +67,7 @@
                                 <td class="border px-4 py-2">{{ $stock->user->name ?? '-' }}</td>
                                 <td class="border px-4 py-2">{{ $stock->product->product_name ?? '-' }}</td>
                                 <td class="border px-4 py-2">{{ $stock->product->category ?? '-' }}</td>
+                                <td class="border px-4 py-2 text-center">{{ $stock->product->source_type ?? '-' }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $stock->quantity }}</td>
                                 <td class="border px-4 py-2 text-center">
                                     @if($stock->status === 'Aman')

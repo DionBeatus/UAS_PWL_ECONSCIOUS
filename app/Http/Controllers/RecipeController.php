@@ -19,11 +19,12 @@ class RecipeController extends Controller
 
     public function create()
     {
-        $existingRecipeProductIds = Recipe::pluck('product_id')->toArray();
+        $usedProductIds = Recipe::pluck('product_id');
 
-        $products = Product::where('category', 'finished product')->whereNotIn('id', $existingRecipeProductIds)->get();
+        $products = Product::where(function ($query) {
+            $query->where('category', 'finished product')->orWhere('source_type', 'handmade');})->whereNotIn('id', $usedProductIds)->get();
 
-        $materials = Product::where('category', '!=', 'finished product')->get();
+        $materials = Product::where('category', 'complement')->get();
 
         return view('recipes.create', compact('products', 'materials'));
     }
@@ -50,21 +51,16 @@ class RecipeController extends Controller
             ]);
         }
 
-        return redirect()
-            ->route('recipes.index')
-            ->with('success', 'Data resep berhasil ditambahkan.');
+        return redirect()->route('recipes.index')->with('success', 'Data resep berhasil ditambahkan.');
     }
 
     public function edit(Recipe $recipe)
     {
-        $recipe->load('details.product');
+       $recipe->load(['product', 'details.product']);
 
-        $products = Product::where(
-            'category',
-            'finished product'
-        )->get();
+        $products = Product::where('category', 'finished product')->orWhere('source_type', 'handmade')->get();
 
-        $materials = Product::where('category', '!=', 'finished product')->get();
+        $materials = Product::where('category', 'complement')->get();
 
         return view(
             'recipes.edit',

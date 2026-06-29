@@ -19,7 +19,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <div>
                             <label class="block font-medium mb-1 text-gray-700">
-                                Produk Jadi
+                                Nama Produk
                             </label>
                             <select name="product_id" class="w-full border rounded px-3 py-2 bg-white">
                                 <option value=""></option>

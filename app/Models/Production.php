@@ -3,14 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Recipe extends Model
+class Production extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
         'product_id',
+        'recipe_id',
+        'production_date',
+        'quantity',
+        'notes',
     ];
 
     public function user()
@@ -23,8 +28,13 @@ class Recipe extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public function recipe()
+    {
+        return $this->belongsTo(Recipe::class);
+    }
+
     public function details()
     {
-        return $this->hasMany(RecipeDetail::class);
+        return $this->hasMany(ProductionDetail::class);
     }
 }
