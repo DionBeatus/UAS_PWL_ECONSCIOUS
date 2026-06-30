@@ -43,26 +43,6 @@
                         </span>
                     </a>
 
-                    <!-- DONATIONS -->
-                    <a href="{{ route('donations.index') }}"
-                        class="relative px-1 py-2 rounded-lg transition duration-300
-                   {{ request()->routeIs('donations.*') ? 'text-green-700' : 'hover:text-green-600' }}">
-                        Donations
-                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
-                        {{ request()->routeIs('donations.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
-                        </span>
-                    </a>
-
-                    <!-- PRODUCTIONS -->
-                    <a href="{{ route('productions.index') }}"
-                        class="relative px-1 py-2 rounded-lg transition duration-300
-                   {{ request()->routeIs('productions.*') ? 'text-green-700' : 'hover:text-green-600' }}">
-                        Productions
-                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
-                        {{ request()->routeIs('productions.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
-                        </span>
-                    </a>
-
                     <!-- RECIPE -->
                     <a href="{{ route('recipes.index') }}"
                         class="relative px-1 py-2 rounded-lg transition duration-300
@@ -80,6 +60,26 @@
                         Purchases
                         <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
                         {{ request()->routeIs('purchases.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+                        </span>
+                    </a>
+
+                    <!-- DONATIONS -->
+                    <a href="{{ route('donations.index') }}"
+                        class="relative px-1 py-2 rounded-lg transition duration-300
+                   {{ request()->routeIs('donations.*') ? 'text-green-700' : 'hover:text-green-600' }}">
+                        Donations
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
+                        {{ request()->routeIs('donations.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+                        </span>
+                    </a>
+
+                    <!-- PRODUCTIONS -->
+                    <a href="{{ route('productions.index') }}"
+                        class="relative px-1 py-2 rounded-lg transition duration-300
+                   {{ request()->routeIs('productions.*') ? 'text-green-700' : 'hover:text-green-600' }}">
+                        Productions
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
+                        {{ request()->routeIs('productions.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
                         </span>
                     </a>
 
