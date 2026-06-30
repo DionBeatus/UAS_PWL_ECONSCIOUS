@@ -15,7 +15,6 @@ class Production extends Model
         'recipe_id',
         'production_date',
         'quantity',
-        'notes',
     ];
 
     public function user()
