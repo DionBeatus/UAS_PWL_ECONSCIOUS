@@ -76,6 +76,7 @@ class ProductionController extends Controller
             $stock = Stock::where('product_id', $detail->product_id)->first();
 
             $stock->quantity -= $usedQty;
+            $stock->user_id = Auth::id();
             $stock->save();
         }
 
@@ -83,6 +84,7 @@ class ProductionController extends Controller
 
         if ($finishedStock) {
             $finishedStock->quantity += $request->quantity;
+            $finishedStock->user_id = Auth::id();
             $finishedStock->save();
         } else {
             Stock::create([
@@ -122,6 +124,7 @@ class ProductionController extends Controller
 
             if ($stock) {
                 $stock->quantity += $detail->quantity;
+                $stock->user_id = Auth::id();
                 $stock->save();
             }
         }
@@ -130,6 +133,7 @@ class ProductionController extends Controller
 
         if ($finishedStock) {
             $finishedStock->quantity -= $production->quantity;
+            $finishedStock->user_id = Auth::id();
             $finishedStock->save();
         }
 
@@ -177,6 +181,7 @@ class ProductionController extends Controller
             $stock = Stock::where('product_id', $detail->product_id)->first();
 
             $stock->quantity -= $usedQty;
+            $stock->user_id = Auth::id();
             $stock->save();
         }
 
@@ -184,6 +189,7 @@ class ProductionController extends Controller
 
         if ($finishedStock) {
             $finishedStock->quantity += $request->quantity;
+            $finishedStock->user_id = Auth::id();
             $finishedStock->save();
         } else {
             Stock::create([
@@ -204,6 +210,7 @@ class ProductionController extends Controller
 
             if ($stock) {
                 $stock->quantity += $detail->quantity;
+                $stock->user_id = Auth::id();
                 $stock->save();
             }
         }
@@ -212,6 +219,7 @@ class ProductionController extends Controller
 
         if ($finishedStock) {
             $finishedStock->quantity -= $production->quantity;
+            $finishedStock->user_id = Auth::id();
             $finishedStock->save();
         }
 
