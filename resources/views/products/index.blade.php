@@ -9,6 +9,12 @@
             </div>
             @endif
 
+            @if(session('error'))
+            <div class="mb-4 p-4 bg-red-100 text-red-700 rounded">
+                {{ session('error') }}
+            </div>
+            @endif
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg text-green-700 font-bold">Daftar Produk</h3>

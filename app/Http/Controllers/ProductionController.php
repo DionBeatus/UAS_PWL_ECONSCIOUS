@@ -80,7 +80,17 @@ class ProductionController extends Controller
             $stock->save();
         }
 
-        $finishedStock = Stock::where('product_id', $request->product_id)->first();
+        $finishedStock = Stock::firstOrCreate(
+            ['product_id' => $request->product_id],
+            [
+                'user_id' => Auth::id(),
+                'quantity' => 0,
+            ]
+        );
+
+        $finishedStock->quantity += $request->quantity;
+        $finishedStock->user_id = Auth::id();
+        $finishedStock->save();
 
         return redirect()->route('productions.index')->with('success', 'Data produksi berhasil ditambahkan.');
     }
@@ -105,6 +115,14 @@ class ProductionController extends Controller
             'product_id' => ['required', 'exists:products,id'],
             'quantity' => ['required', 'integer', 'min:1'],
         ]);
+
+        $finishedStock = Stock::where('product_id', $production->product_id)->first();
+
+        if ($finishedStock) {
+            $finishedStock->quantity -= $production->quantity;
+            $finishedStock->user_id = Auth::id();
+            $finishedStock->save();
+        }
 
         foreach ($production->details as $detail) {
 
@@ -165,6 +183,18 @@ class ProductionController extends Controller
             $stock->save();
         }
 
+        $finishedStock = Stock::firstOrCreate(
+            ['product_id' => $request->product_id],
+            [
+                'user_id' => Auth::id(),
+                'quantity' => 0,
+            ]
+        );
+
+        $finishedStock->quantity += $request->quantity;
+        $finishedStock->user_id = Auth::id();
+        $finishedStock->save();
+
         return redirect()->route('productions.index')->with('success', 'Data produksi berhasil diupdate.');
     }
 
@@ -179,6 +209,14 @@ class ProductionController extends Controller
                 $stock->user_id = Auth::id();
                 $stock->save();
             }
+        }
+
+        $finishedStock = Stock::where('product_id', $production->product_id)->first();
+
+        if ($finishedStock) {
+            $finishedStock->quantity -= $production->quantity;
+            $finishedStock->user_id = Auth::id();
+            $finishedStock->save();
         }
 
         $production->delete();

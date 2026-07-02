@@ -14,11 +14,7 @@
             <div class="bg-blue-100 shadow-sm sm:rounded-lg p-6 bg-gradient-to-b from-white to-[#CDFFC7]">
                 <form action="{{ route('sales.store') }}" method="POST">
                     @csrf
-                    @if($errors->any())
-                    <div class="mb-4 p-4 bg-red-100 border border-red-300 text-red-700 rounded-lg">
-                        {{ $errors->first() }}
-                    </div>
-                    @endif
+                    
                     <div class="mb-4">
                         <label class="block font-medium mb-1 text-gray-700">Perubahan Oleh</label>
                         <input type="text"

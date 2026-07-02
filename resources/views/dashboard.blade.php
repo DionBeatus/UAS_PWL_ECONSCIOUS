@@ -1,17 +1,8 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="max-w-7xl mx-auto">
-            <div class="bg-white/70 backdrop-blur-md rounded-xl px-6 py-4 shadow">
-                <h2 class="font-semibold text-xl text-green-800 leading-tight">
-                    {{ __('Dashboard Admin') }}
-                </h2>
-            </div>
-        </div>
-    </x-slot>
 
     <div class="py-2">
         <div class="min-h-screen bg-gradient-to-b from-white to-green-200 bg-[url('/asset/bg.png')] bg-no-repeat bg-bottom bg-contain">
-            <div class="py-1 px-6 rounded-xl">
+            <div class="py-3 px-6 rounded-xl">
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-2 gap-6 mb-6">
 

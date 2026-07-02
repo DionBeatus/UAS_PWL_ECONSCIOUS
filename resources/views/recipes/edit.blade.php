@@ -20,7 +20,7 @@
                             <label class="block font-medium mb-1 text-gray-700">
                                 Nama Produk
                             </label>
-                            <input type="text" value="{{ $recipe->product->product_name }}" class="w-full border rounded px-3 py-2 bg-gray-100" readonly>
+                            <input type="text" value="{{ $recipe->product->product_name }}" class="w-full border rounded px-3 py-2 bg-white focus:ring-green-500 focus:border-green-500">
                             <input type="hidden" name="product_id" value="{{ $recipe->product_id }}">
                         </div>
 

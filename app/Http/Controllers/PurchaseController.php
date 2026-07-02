@@ -27,11 +27,11 @@ class PurchaseController extends Controller
     {
         $request->validate([
             'purchase_date' => ['required', 'date'],
-            'store_name' => ['required'],
+            'store_name' => ['required', 'string', 'max:255'],
             'shipping_cost' => ['nullable', 'integer'],
-            'products' => ['required', 'array'],
-            'quantities' => ['required', 'array'],
-            'prices' => ['required', 'array'],
+            'products' => ['required', 'array'], 'products.*' => ['required', 'exists:products,id'],
+            'quantities' => ['required', 'array'], 'quantities.*' => ['required', 'integer', 'min:1'],
+            'prices' => ['required', 'array'], 'prices.*' => ['required', 'integer', 'min:0'],
         ]);
 
         $purchase = Purchase::create([
@@ -99,9 +99,9 @@ class PurchaseController extends Controller
             'purchase_date' => ['required', 'date'],
             'store_name' => ['required'],
             'shipping_cost' => ['nullable', 'integer'],
-            'products' => ['required', 'array'],
-            'quantities' => ['required', 'array'],
-            'prices' => ['required', 'array'],
+            'products' => ['required', 'array'], 'products.*' => ['required', 'exists:products,id'],
+            'quantities' => ['required', 'array'], 'quantities.*' => ['required', 'integer', 'min:1'],
+            'prices' => ['required', 'array'], 'prices.*' => ['required', 'integer', 'min:0'],
         ]);
 
         foreach ($purchase->details as $detail) {

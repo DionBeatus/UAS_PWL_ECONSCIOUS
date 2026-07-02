@@ -11,15 +11,7 @@
     <div class="py-6">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-blue-100 shadow-sm sm:rounded-lg p-6 bg-gradient-to-b from-white to-[#CDFFC7]">
-                @if ($errors->any())
-                <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
+               
                 <form action="{{ route('products.store') }}" method="POST">
                     @csrf
                     <div class="mb-4">
@@ -29,6 +21,9 @@
                     <div class="mb-4">
                         <label class="block font-medium mb-1 text-gray-700">Nama Produk</label>
                         <input type="text" name="name" value="{{ old('name') }}" class="w-full border rounded px-3 py-2">
+                        @error('name')
+                        <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-4">
                         <label class="block font-medium mb-1 text-gray-700">Kategori</label>

@@ -29,9 +29,9 @@ class DonationController extends Controller
     {
         $request->validate([
             'donation_date' => ['required', 'date'],
-            'donor_name' => ['required'],
-            'products' => ['required', 'array'],
-            'quantities' => ['required', 'array'],
+            'donor_name' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z\s]+$/'],
+            'products' => ['required', 'array'], 'products.*' => ['required', 'exists:products,id'],
+            'quantities' => ['required', 'array'], 'quantities.*' => ['required', 'integer', 'min:1'],
         ]);
 
         $donation = Donation::create([
@@ -86,9 +86,9 @@ class DonationController extends Controller
     {
         $request->validate([
             'donation_date' => ['required', 'date'],
-            'donor_name' => ['required'],
-            'products' => ['required', 'array'],
-            'quantities' => ['required', 'array'],
+            'donor_name' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z\s]+$/'],
+            'products' => ['required', 'array'], 'products.*' => ['required', 'exists:products,id'],
+            'quantities' => ['required', 'array'], 'quantities.*' => ['required', 'integer', 'min:1'],
         ]);
 
         foreach ($donation->details as $detail) {

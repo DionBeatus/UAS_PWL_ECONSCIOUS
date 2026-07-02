@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Stock;
 use Illuminate\Support\Facades\Auth;
+use App\Models\RecipeDetail;
+use App\Models\PurchaseDetail;
+use App\Models\DonationDetail;
+use App\Models\SaleDetail;
+use App\Models\ProductionDetail;
 
 class ProductController extends Controller
 {
@@ -58,7 +63,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-    
+
         $validated = $request->validate([
             'product_name' => ['required', 'string', 'max:255'],
             'category' => ['required', 'string'],
@@ -81,6 +86,18 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        if (
+            RecipeDetail::where('product_id', $product->id)->exists() ||
+            PurchaseDetail::where('product_id', $product->id)->exists() ||
+            DonationDetail::where('product_id', $product->id)->exists() ||
+            SaleDetail::where('product_id', $product->id)->exists() ||
+            ProductionDetail::where('product_id', $product->id)->exists()
+        ) {
+            return back()->with(
+                'error',
+                'Produk sedang digunakan dan tidak dapat dihapus.'
+            );
+        }
         Stock::where('product_id', $product->id)->delete();
 
         $product->delete();

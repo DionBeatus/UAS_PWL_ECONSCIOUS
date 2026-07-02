@@ -24,7 +24,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z\s]+$/'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'role' => ['required', Rule::in(['admin', 'user'])],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
@@ -48,8 +48,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max: 255'],
-            'email' => ['required', 'email', 'max: 255', Rule::unique('users', 'email')->ignore($user->id)],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z\s]+$/'],
+            'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
             'role' => ['required', Rule::in(['admin', 'user'])],
             'password' => ['nullable', 'string', 'min:6', 'confirmed'],
         ]);

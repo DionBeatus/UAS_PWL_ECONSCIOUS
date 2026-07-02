@@ -47,7 +47,7 @@ class StockController extends Controller
     public function update(Request $request, Stock $stock)
     {
         $request->validate([
-            'quantity' => 'required|integer|min:0',
+            'quantity' => ['required', 'integer', 'min:0'],
         ]);
 
         $stock->update([

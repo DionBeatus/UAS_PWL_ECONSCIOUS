@@ -28,11 +28,11 @@ class SaleController extends Controller
     {
         $request->validate([
             'sale_date' => ['required', 'date'],
-            'customer_name' => ['required'],
+            'customer_name' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z\s]+$/'],
             'customer_email' => ['required', 'email'],
-            'customer_phone' => ['required'],
-            'products' => ['required', 'array'],
-            'quantities' => ['required', 'array'],
+            'customer_phone' => ['required', 'digits_between:10,15'],
+            'products' => ['required', 'array'], 'products.*' => ['required', 'exists:products,id'],
+            'quantities' => ['required', 'array'], 'quantities.*' => ['required', 'integer', 'min:1'],
         ]);
 
         foreach ($request->products as $index => $productId) {
@@ -121,11 +121,11 @@ class SaleController extends Controller
     {
         $request->validate([
             'sale_date' => ['required', 'date'],
-            'customer_name' => ['required'],
+            'customer_name' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z\s]+$/'],
             'customer_email' => ['required', 'email'],
-            'customer_phone' => ['required'],
-            'products' => ['required', 'array'],
-            'quantities' => ['required', 'array'],
+            'customer_phone' => ['required', 'digits_between:10,15'],
+            'products' => ['required', 'array'], 'products.*' => ['required', 'exists:products,id'],
+            'quantities' => ['required', 'array'], 'quantities.*' => ['required', 'integer', 'min:1'],
         ]);
 
         foreach ($sale->details as $detail) {

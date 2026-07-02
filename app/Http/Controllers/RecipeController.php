@@ -24,7 +24,7 @@ class RecipeController extends Controller
         $products = Product::where(function ($query) {
             $query->where('category', 'finished product')->orWhere('source_type', 'handmade');})->whereNotIn('id', $usedProductIds)->get();
 
-        $materials = Product::where('category', 'complement')->get();
+        $materials = Product::where('category', 'complement')->orWhere('category', 'raw material')->get();
 
         return view('recipes.create', compact('products', 'materials'));
     }
@@ -33,8 +33,8 @@ class RecipeController extends Controller
     {
         $request->validate([
             'product_id' => ['required'],
-            'products' => ['required', 'array'],
-            'quantities' => ['required', 'array'],
+            'products' => ['required', 'array'], 'products.*' => ['required', 'exists:products,id'],
+            'quantities' => ['required', 'array'], 'quantities.*' => ['required', 'integer', 'min:1'],
         ]);
 
         $recipe = Recipe::create([
@@ -60,24 +60,17 @@ class RecipeController extends Controller
 
         $products = Product::where('category', 'finished product')->orWhere('source_type', 'handmade')->get();
 
-        $materials = Product::where('category', 'complement')->get();
+        $materials = Product::where('category', 'complement')->orWhere('category', 'raw material')->get();
 
-        return view(
-            'recipes.edit',
-            compact(
-                'recipe',
-                'products',
-                'materials'
-            )
-        );
+        return view('recipes.edit', compact('recipe', 'products', 'materials'));
     }
 
     public function update(Request $request, Recipe $recipe)
     {
         $request->validate([
             'product_id' => ['required'],
-            'products' => ['required', 'array'],
-            'quantities' => ['required', 'array'],
+            'products' => ['required', 'array'], 'products.*' => ['required', 'exists:products,id'],
+            'quantities' => ['required', 'array'], 'quantities.*' => ['required', 'integer', 'min:1'],
         ]);
 
         $recipe->update([
@@ -109,6 +102,7 @@ class RecipeController extends Controller
     public function destroy(Recipe $recipe)
     {
         $recipe->delete();
+
         return redirect()->route('recipes.index')->with('success', 'Data resep berhasil dihapus.');
     }
 }
