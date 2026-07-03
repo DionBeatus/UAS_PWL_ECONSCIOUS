@@ -54,6 +54,12 @@ class UserController extends Controller
             'password' => ['nullable', 'string', 'min:6', 'confirmed'],
         ]);
 
+        if (
+            $user->role === 'admin' && $validated['role'] === 'user' && User::where('role', 'admin')->count() === 1
+        ) {
+            return back()->with('error', 'Minimal harus ada satu admin.');
+        }
+
         $user->name = $validated['name'];
         $user->email = $validated['email'];
         $user->role = $validated['role'];
@@ -71,6 +77,12 @@ class UserController extends Controller
     {
         if (\Auth::user()->id === $user->id) {
             return redirect()->route('users.index')->with('error', 'Anda tidak dapat menghapus akun Anda sendiri.');
+        }
+
+        if (
+            $user->role === 'admin' && User::where('role', 'admin')->count() === 1
+        ) {
+            return redirect()->route('users.index')->with('error', 'Minimal harus ada satu admin.');
         }
 
         $user->delete();

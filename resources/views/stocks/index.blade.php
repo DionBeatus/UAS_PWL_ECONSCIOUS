@@ -8,6 +8,12 @@
             </div>
             @endif
 
+            @if(session('error'))
+            <div class="mb-4 p-4 bg-red-100 text-red-700 rounded">
+                {{ session('error') }}
+            </div>
+            @endif
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
 
                 <form action="{{ route('stocks.index') }}" method="GET" class="mb-6 grid grid-cols-1 md:grid-cols-4 gap-3 bg-green-50 p-4 rounded-xl border border-green-200">

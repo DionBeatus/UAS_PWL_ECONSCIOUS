@@ -60,6 +60,10 @@ class StockController extends Controller
 
     public function destroy(Stock $stock)
     {
+        if ($stock->quantity > 0) {
+            return back()->with('error', 'Stok tidak dapat dihapus karena jumlah stok masih tersedia.');
+        }
+
         $stock->delete();
         return redirect()->route('stocks.index')->with('success', 'Data stok berhasil dihapus.');
     }
