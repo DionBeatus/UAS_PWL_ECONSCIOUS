@@ -1,96 +1,270 @@
-<x-app-layout>
+<nav x-data="{ open: false }" class="sticky top-0 z-50 bg-gradient-to-r from-green-100 via-white to-green-100 backdrop-blur-md shadow-lg border-b border-green-100">
 
-    <x-slot name="header">
-        <div class="max-w-7xl mx-auto">
-            <div class="bg-white/70 backdrop-blur-md rounded-xl px-6 py-4 shadow">
-                <h2 class="font-semibold text-xl text-green-800 leading-tight">
-                    {{ __('Edit Data Produksi') }}
-                </h2>
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-6">
+
+        <div class="flex items-center justify-between h-20">
+
+            <!-- LOGO -->
+            <div class="flex items-center gap-3 shrink-0 hover:scale-105 transition duration-300">
+
+                <img src="{{ asset('asset/bumi_only.png') }}" class="h-10 w-auto object-contain" alt="Logo">
+
+                <span class="font-bold text-2xl lg:text-3xl bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent pb-1">
+                    econscious
+                </span>
+
             </div>
-        </div>
-    </x-slot>
 
-    <div class="py-6">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+            <!-- DESKTOP MENU -->
+            <div class="hidden lg:flex flex-1 justify-center">
 
-            <div class="bg-blue-100 shadow-sm sm:rounded-lg p-6 bg-gradient-to-b from-white to-[#CDFFC7]">
+                <div class="flex items-center gap-5 text-[15px] font-semibold text-green-800">
 
-                <form action="{{ route('productions.update', $production->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
+                    <!-- Dashboard -->
+                    <a href="{{ route('dashboard') }}"
+                        class="relative px-1 py-2 transition duration-300 {{ request()->routeIs('dashboard') ? 'text-green-700' : 'hover:text-green-600' }}">
 
-                    <div class="mb-4">
-                        <label class="block font-medium mb-1 text-gray-700">
-                            Tanggal Produksi
-                        </label>
+                        Dashboard
 
-                        <input type="date" name="production_date"
-                            value="{{ old('production_date', $production->production_date) }}"
-                            class="w-full border rounded px-3 py-2 bg-white focus:ring-green-500 focus:border-green-500">
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full {{ request()->routeIs('dashboard') ? 'w-full' : 'w-0' }}">
+                        </span>
 
-                        @error('production_date')
-                            <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    </a>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <!-- Users -->
+                    <a href="{{ route('users.index') }}"
+                        class="relative px-1 py-2 transition duration-300 {{ request()->routeIs('users.*') ? 'text-green-700' : 'hover:text-green-600' }}">
 
-                        <div>
-                            <label class="block font-medium mb-1 text-gray-700">
-                                Nama Produk
-                            </label>
+                        Users
 
-                            <input type="text" value="{{ $production->product->product_name }}"
-                                class="w-full border rounded px-3 py-2 bg-gray-100 text-black" readonly>
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full {{ request()->routeIs('users.*') ? 'w-full' : 'w-0' }}">
+                        </span>
 
-                            <input type="hidden" name="product_id"
-                                value="{{ old('product_id', $production->product_id) }}">
-                        </div>
+                    </a>
 
-                        <div>
-                            <label class="block font-medium mb-1 text-gray-700">
-                                Perubahan Oleh
-                            </label>
+                    <!-- Products -->
+                    <a href="{{ route('products.index') }}"
+                        class="relative px-1 py-2 transition duration-300 {{ request()->routeIs('products.*') ? 'text-green-700' : 'hover:text-green-600' }}">
 
-                            <input type="text" value="{{ auth()->user()->name }}"
-                                class="w-full border rounded px-3 py-2 bg-gray-100" readonly>
-                        </div>
+                        Products
 
-                    </div>
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full {{ request()->routeIs('products.*') ? 'w-full' : 'w-0' }}">
+                        </span>
 
-                    <div class="mb-6">
-                        <label class="block font-medium mb-1 text-gray-700">
-                            Quantity Produksi
-                        </label>
+                    </a>
 
-                        <input type="number" name="quantity" min="1"
-                            value="{{ old('quantity', $production->quantity) }}"
-                            class="w-full border rounded px-3 py-2 bg-white font-medium focus:ring-green-500 focus:border-green-500">
+                    <!-- Recipes -->
+                    <a href="{{ route('recipes.index') }}"
+                        class="relative px-1 py-2 transition duration-300 {{ request()->routeIs('recipes.*') ? 'text-green-700' : 'hover:text-green-600' }}">
 
-                        @error('quantity')
-                            <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
+                        Recipes
 
-                    <div class="flex gap-2">
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full {{ request()->routeIs('recipes.*') ? 'w-full' : 'w-0' }}">
+                        </span>
 
-                        <button type="submit"
-                            class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition font-medium">
-                            Simpan Perubahan
+                    </a>
+
+                    <!-- Purchases -->
+                    <a href="{{ route('purchases.index') }}"
+                        class="relative px-1 py-2 transition duration-300 {{ request()->routeIs('purchases.*') ? 'text-green-700' : 'hover:text-green-600' }}">
+
+                        Purchases
+
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full {{ request()->routeIs('purchases.*') ? 'w-full' : 'w-0' }}">
+                        </span>
+
+                    </a>
+
+                    <!-- Donations -->
+                    <a href="{{ route('donations.index') }}"
+                        class="relative px-1 py-2 transition duration-300 {{ request()->routeIs('donations.*') ? 'text-green-700' : 'hover:text-green-600' }}">
+
+                        Donations
+
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full {{ request()->routeIs('donations.*') ? 'w-full' : 'w-0' }}">
+                        </span>
+
+                    </a>
+
+                    <!-- Productions -->
+                    <a href="{{ route('productions.index') }}"
+                        class="relative px-1 py-2 transition duration-300 {{ request()->routeIs('productions.*') ? 'text-green-700' : 'hover:text-green-600' }}">
+
+                        Productions
+
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full {{ request()->routeIs('productions.*') ? 'w-full' : 'w-0' }}">
+                        </span>
+
+                    </a>
+
+                    <!-- Sales -->
+                    <a href="{{ route('sales.index') }}"
+                        class="relative px-1 py-2 transition duration-300 {{ request()->routeIs('sales.*') ? 'text-green-700' : 'hover:text-green-600' }}">
+
+                        Sales
+
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full {{ request()->routeIs('sales.*') ? 'w-full' : 'w-0' }}">
+                        </span>
+
+                    </a>
+
+                    <!-- Stocks -->
+                    <a href="{{ route('stocks.index') }}"
+                        class="relative px-1 py-2 transition duration-300 {{ request()->routeIs('stocks.*') ? 'text-green-700' : 'hover:text-green-600' }}">
+
+                        Stocks
+
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full {{ request()->routeIs('stocks.*') ? 'w-full' : 'w-0' }}">
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Desktop User -->
+            <div class="hidden lg:flex items-center gap-3">
+
+                <x-dropdown align="right" width="48">
+
+                    <x-slot name="trigger">
+
+                        <button class="bg-gradient-to-r from-green-400 to-blue-400 text-white font-bold px-4 py-2 rounded-full shadow-md flex items-center gap-2 hover:scale-105 transition">
+
+                            {{ Auth::user()->name }}
+
+                            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+
+                                <path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" />
+
+                            </svg>
+
                         </button>
 
-                        <a href="{{ route('productions.index') }}"
-                            class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition font-medium">
-                            Kembali
-                        </a>
+                    </x-slot>
+                    <x-slot name="content">
 
-                    </div>
+                        <x-dropdown-link :href="route('profile.edit')">
+                            Profile
+                        </x-dropdown-link>
 
-                </form>
+                        <form method="POST" action="{{ route('logout') }}">
+
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+
+                                Logout
+
+                            </x-dropdown-link>
+
+                        </form>
+
+                    </x-slot>
+
+                </x-dropdown>
+
+            </div>
+
+            <!-- Mobile Button -->
+            <div class="lg:hidden">
+
+                <button @click="open = !open" class="p-2 rounded-lg hover:bg-green-100 transition">
+
+                    <!-- Hamburger -->
+                    <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+
+                    </svg>
+
+                    <!-- Close -->
+                    <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+
+                    </svg>
+
+                </button>
 
             </div>
 
         </div>
+
     </div>
 
-</x-app-layout>
+    <!-- Mobile Menu -->
+    <div x-show="open" x-transition x-cloak class="lg:hidden bg-white border-t shadow-lg">
+
+        <div class="px-5 py-4 space-y-2 text-green-800 font-medium">
+
+            <a href="{{ route('dashboard') }}" class="block py-2 hover:text-green-600">
+                Dashboard
+            </a>
+
+            <a href="{{ route('users.index') }}" class="block py-2 hover:text-green-600">
+                Users
+            </a>
+
+            <a href="{{ route('products.index') }}" class="block py-2 hover:text-green-600">
+                Products
+            </a>
+
+            <a href="{{ route('recipes.index') }}" class="block py-2 hover:text-green-600">
+                Recipes
+            </a>
+
+            <a href="{{ route('purchases.index') }}" class="block py-2 hover:text-green-600">
+                Purchases
+            </a>
+
+            <a href="{{ route('donations.index') }}" class="block py-2 hover:text-green-600">
+                Donations
+            </a>
+
+            <a href="{{ route('productions.index') }}" class="block py-2 hover:text-green-600">
+                Productions
+            </a>
+
+            <a href="{{ route('sales.index') }}" class="block py-2 hover:text-green-600">
+                Sales
+            </a>
+
+            <a href="{{ route('stocks.index') }}" class="block py-2 hover:text-green-600">
+                Stocks
+            </a>
+
+            <hr class="my-3">
+
+            <div class="text-sm text-gray-500">
+                Login sebagai
+            </div>
+
+            <div class="font-bold text-green-700">
+                {{ Auth::user()->name }}
+            </div>
+
+            <a href="{{ route('profile.edit') }}" class="block py-2 hover:text-green-600">
+
+                Profile
+
+            </a>
+
+            <form method="POST" action="{{ route('logout') }}">
+
+                @csrf
+
+                <button type="submit" class="w-full text-left py-2 text-red-600 hover:text-red-700">
+
+                    Logout
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</nav>
