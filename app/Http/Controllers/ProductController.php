@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:products,product_name'],
             'category' => ['required', 'string'],
             'source_type' => ['required', 'in:purchase,handmade,donation'],
             'unit' => ['required', 'string'],
@@ -65,7 +65,7 @@ class ProductController extends Controller
     {
 
         $validated = $request->validate([
-            'product_name' => ['required', 'string', 'max:255'],
+            'product_name' => ['required', 'string', 'max:255', 'unique:products,product_name,' . $product->id],
             'category' => ['required', 'string'],
             'source_type' => ['required', 'in:purchase,handmade,donation'],
             'unit' => ['required', 'string'],
