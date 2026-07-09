@@ -105,7 +105,7 @@
                 </div>
             </div>
 
-            <!-- DESKTOP USER -->
+            <!-- DESKTOP -->
             <div class="hidden lg:flex items-center gap-3">
 
                 <x-dropdown align="right" width="48">
@@ -117,12 +117,9 @@
 
                             {{ Auth::user()->name }}
 
-                            <svg class="h-4 w-4"
-                                fill="currentColor"
-                                viewBox="0 0 20 20">
+                            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
 
-                                <path
-                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" />
+                                <path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" />
 
                             </svg>
 
@@ -156,36 +153,18 @@
             <!-- MOBILE BUTTON -->
             <div class="lg:hidden">
 
-                <button
-                    @click="open=!open"
+                <button @click="open=!open"
                     class="p-2 rounded-lg hover:bg-green-100 transition">
 
-                    <svg x-show="!open"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-7 h-7 text-green-700"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
+                    <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 
-                        <path stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
 
                     </svg>
 
-                    <svg x-show="open"
-                        x-cloak
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-7 h-7 text-green-700"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
+                    <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 
-                        <path stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 
                     </svg>
 
@@ -198,32 +177,19 @@
     </div>
 
     <!-- MOBILE MENU -->
-    <div
-        x-show="open"
-        x-transition
-        x-cloak
-        class="lg:hidden bg-white border-t shadow-lg">
+    <div x-show="open" x-transition x-cloak class="lg:hidden bg-white border-t shadow-lg">
 
         <div class="px-5 py-4 space-y-2 text-green-800 font-medium">
 
             <a href="{{ route('dashboard') }}" class="block py-2 hover:text-green-600">Dashboard</a>
-
             <a href="{{ route('users.index') }}" class="block py-2 hover:text-green-600">Users</a>
-
             <a href="{{ route('products.index') }}" class="block py-2 hover:text-green-600">Products</a>
-
             <a href="{{ route('recipes.index') }}" class="block py-2 hover:text-green-600">Recipes</a>
-
             <a href="{{ route('purchases.index') }}" class="block py-2 hover:text-green-600">Purchases</a>
-
             <a href="{{ route('donations.index') }}" class="block py-2 hover:text-green-600">Donations</a>
-
             <a href="{{ route('productions.index') }}" class="block py-2 hover:text-green-600">Productions</a>
-
             <a href="{{ route('sales.index') }}" class="block py-2 hover:text-green-600">Sales</a>
-
             <a href="{{ route('stocks.index') }}" class="block py-2 hover:text-green-600">Stocks</a>
-
             <hr class="my-3">
 
             <div class="text-sm text-gray-500">
